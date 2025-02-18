@@ -1,0 +1,10 @@
+
+frontend/css/tailwindcss
+
+frontend/css/out.css
+
+frontend/go/main.wasm
+
+frontend/js/wasm_exec.js
+
+/node_modules

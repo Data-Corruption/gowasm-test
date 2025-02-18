@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go WASM Test</title>
+    <link href="/frontend/css/out.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="hero bg-base-100 min-h-screen">
+        <ul class="hero-content list-row bg-base-300 shadow-lg rounded-box">
+            <li class="h-48">
+                <img src="https://go.dev/blog/gophergala/fancygopher.jpg" class="rounded-lg shadow-2xl h-full">
+            </li>
+            <li>
+                <ul class="list">
+                    <h1 class="text-5xl font-bold">Go WASM Test!</h1>
+                    <p id="paragraph-example" class="py-6"></p>
+                    <button id="click-btn" class="btn btn-primary">Click me!</button>
+                </ul>
+            </li>
+            <li>
+                <div class="stats shadow">
+                    <div class="stat">
+                        <div class="stat-title">Total Clicks</div>
+                        <div id="click-value" class="stat-value">0</div>
+                        <div class="stat-desc">wow that's a lot of clicks</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script src="/frontend/js/wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("/frontend/go/main.wasm"), go.importObject).then(result => {
+            go.run(result.instance);
+        });
+    </script>
+</body>
+</html>
